@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body{
+                width: 33%;
+            }
+            #res{
+                background-color: lightgray;
+                border: solid;
+                height: 48px;
+                font-size: 20px;
+            }
+            .btn{
+                width: 25%;
+                height: 36px;
+                font-size: 18px;
+                margin: 0;
+                float: left;
+            }
+            #btn0, #btn1{
+                color: brown;
+                background-color: lightgreen;
+            }
+            #btnClr, #btnEql{
+                color: white;
+                background-color: darkgreen;
+            }
+            #btnSum, #btnSub, #btnMul, #btnDiv{
+                color: red;
+                background-color: black;
+            }
+
+        </style>
+        <title>Binary Calculator</title>
+    </head>
+    <body>
+        <div class="calculator">
+            <div id='res'></div>
+            <div id="btns">
+                <button class='btn' id='btn0'>0</button>
+                <button class='btn' id='btn1'>1</button>
+                <button class='btn' id='btnClr'>C</button>
+                <button class='btn' id='btnEql'>=</button>
+                <button class='btn' id='btnSum'>+</button>
+                <button class='btn' id='btnSub'>-</button>
+                <button class='btn' id='btnMul'>*</button>
+                <button class='btn' id='btnDiv'>/</button>
+            </div>
+        </div>
+
+        <script>
+            let display = document.getElementById('res');
+            let operator = '';
+
+            const addListener = (id,val) => {
+                return document.getElementById(id).addEventListener('click', () => {
+                    if(val !== '0' && val !== '1'){
+                        operator = val;
+                    }
+                    display.innerText += val;
+                })
+            }
+
+            addListener('btn0','0');
+            addListener('btn1','1');
+            addListener('btnSum','+');
+            addListener('btnSub','-');
+            addListener('btnMul','*');
+            addListener('btnDiv','/');  
+            
+            document.getElementById('btnClr').addEventListener('click', () => {
+                operator = '';
+                display.innerText = '';
+            })
+
+            document.getElementById('btnEql').addEventListener('click', () => {
+                const result = {
+                    '+': (a, b) => a + b,
+                    '-': (a, b) => a - b,
+                    '*': (a, b) => a * b,
+                    '/': (a, b) => a / b
+                };
+
+                let [a, b] = display.innerText.split(operator);
+
+                a = parseInt(a,2);
+                b = parseInt(b,2);
+                
+                display.innerText = result[operator](a, b).toString(2);
+                
+            })
+
+            
+        </script>
+    </body>
+</html>

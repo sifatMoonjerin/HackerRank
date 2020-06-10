@@ -1,0 +1,1 @@
+const regexVar = () => /\d+/g

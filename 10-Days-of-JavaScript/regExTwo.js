@@ -1,0 +1,1 @@
+const regexVar = () => /^(Mr|Mrs|Ms|Dr|Er)\.[A-Za-z]+$/
