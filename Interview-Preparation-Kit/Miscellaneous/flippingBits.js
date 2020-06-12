@@ -1,0 +1,1 @@
+const flippingBits = N =>  ~N >>> 0
