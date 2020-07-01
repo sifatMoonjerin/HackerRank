@@ -1,3 +1,5 @@
+import math
+
 arr = []
 
 for _ in range(6):
